@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>女性下肢力線調整課 — Here and Now</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF7F2;
+    --earth: #8B7355;
+    --dark-earth: #4A3B2C;
+    --sage: #7A8C6E;
+    --dusty-rose: #C4906E;
+    --light-sage: #D4DBC8;
+    --text: #2C2218;
+    --text-light: #7A6D5E;
+    --line: #D4C9B8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--text);
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 80px 24px 100px;
+    background: var(--cream);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,144,110,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(122,140,110,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    letter-spacing: 0.35em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1.5;
+    color: var(--dark-earth);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+
+  .hero-title span {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--earth);
+    letter-spacing: 0.1em;
+    margin-top: 10px;
+  }
+
+  .hero-divider {
+    width: 60px; height: 1px;
+    background: var(--earth);
+    margin: 0 auto 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.6s;
+  }
+
+  .hero-date-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid var(--line);
+    padding: 20px 40px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.8s;
+  }
+
+  .hero-date-badge .dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    color: var(--dark-earth);
+  }
+
+  .hero-date-badge .time {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--text-light);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.4s;
+  }
+
+  .scroll-hint span {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    color: var(--text-light);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--earth), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 24px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--line);
+    max-width: 80px;
+  }
+
+  .section-title {
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--dark-earth);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  /* INFO GRID */
+  .info-section {
+    padding: 60px 24px;
+    background: var(--cream);
+  }
+
+  .info-inner { max-width: 700px; margin: 0 auto; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 36px;
+  }
+
+  @media (max-width: 560px) {
+    .info-grid { grid-template-columns: 1fr; }
+  }
+
+  .info-card {
+    background: var(--warm-white);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--earth);
+    transition: height 0.4s ease;
+  }
+
+  .info-card:hover::before { height: 100%; }
+
+  .info-card-icon { font-size: 1.1rem; margin-bottom: 12px; display: block; }
+
+  .info-card-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  .info-card-content {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .info-card-content strong {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--dark-earth);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* CONTENT */
+  .content-body {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 2;
+  }
+
+  .content-body p { margin-bottom: 20px; }
+
+  .highlight-block {
+    border-left: 2px solid var(--dusty-rose);
+    padding: 20px 24px;
+    margin: 32px 0;
+    background: rgba(196,144,110,0.05);
+  }
+
+  .highlight-block p {
+    font-style: italic;
+    color: var(--dark-earth);
+    margin: 0;
+    font-size: 0.93rem;
+  }
+
+  /* GIFTS */
+  .gifts-section {
+    background: var(--dark-earth);
+    padding: 80px 24px;
+    color: var(--cream);
+  }
+
+  .gifts-inner { max-width: 700px; margin: 0 auto; }
+
+  .gifts-section .section-label { color: var(--light-sage); }
+  .gifts-section .section-label::after { background: rgba(212,219,200,0.3); }
+  .gifts-section .section-title { color: var(--cream); }
+
+  .gifts-list {
+    list-style: none;
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .gifts-list li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    border: 1px solid rgba(212,219,200,0.15);
+    font-size: 0.93rem;
+    color: rgba(245,240,232,0.85);
+    transition: background 0.3s;
+  }
+
+  .gifts-list li:hover { background: rgba(255,255,255,0.04); }
+
+  .gift-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--dusty-rose);
+    min-width: 32px;
+    line-height: 1;
+  }
+
+  .gifts-note {
+    margin-top: 28px;
+    font-size: 0.8rem;
+    color: rgba(212,219,200,0.55);
+    letter-spacing: 0.05em;
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  /* AFTER CLASS */
+  .after-card {
+    border: 1px solid var(--line);
+    padding: 36px 32px;
+    background: rgba(255,255,255,0.5);
+    margin-top: 36px;
+    position: relative;
+  }
+
+  .after-card::before {
+    content: '✦';
+    position: absolute;
+    top: -12px; left: 32px;
+    background: var(--warm-white);
+    padding: 0 8px;
+    color: var(--earth);
+    font-size: 0.9rem;
+  }
+
+  .after-card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 2;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 100px 24px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,144,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .price-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 10vw, 5rem);
+    font-weight: 300;
+    color: var(--dark-earth);
+    line-height: 1;
+    margin: 20px 0 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .price-sub {
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 16px 52px;
+    background: var(--dark-earth);
+    color: var(--cream);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.88rem;
+    letter-spacing: 0.25em;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--earth);
+    transform: translateY(-2px);
+  }
+
+  .cta-note {
+    margin-top: 24px;
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 36px 24px;
+    text-align: center;
+    background: var(--dark-earth);
+    color: rgba(212,219,200,0.4);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">Here and Now Studio · 2025 Summer</p>
+  <h1 class="hero-title">
+    女性下肢力線調整課
+    <span>Female Lower Body Alignment Workshop</span>
+  </h1>
+  <div class="hero-divider"></div>
+  <div class="hero-date-badge">
+    <span class="dates">7月17日 — 8月14日</span>
+    <span class="time">每週六　19:00 – 20:30</span>
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- INFO GRID -->
+<div class="info-section">
+  <div class="info-inner">
+    <p class="section-label reveal">課程資訊</p>
+    <div class="info-grid">
+      <div class="info-card reveal reveal-delay-1">
+        <span class="info-card-icon">📍</span>
+        <p class="info-card-label">上課地點</p>
+        <p class="info-card-content">
+          捷運忠孝敦化站附近
+        </p>
+      </div>
+      <div class="info-card reveal reveal-delay-2">
+        <span class="info-card-icon">🗓</span>
+        <p class="info-card-label">上課時間</p>
+        <p class="info-card-content">
+          7/17、7/24、7/31<br>
+          8/7、8/14<br>
+          <span style="font-size:0.8rem;color:var(--text-light);">每週六 19:00–20:30</span>
+        </p>
+      </div>
+      <div class="info-card reveal reveal-delay-3" style="grid-column:1/-1; text-align:center;">
+        <span class="info-card-icon">✦</span>
+        <p class="info-card-label">課程費用</p>
+        <p class="info-card-content"><strong>NT$12,600</strong></p>
+      </div>
+    </div>
+    <p class="reveal" style="margin-top:20px; font-size:0.8rem; color:var(--text-light); font-style:italic; text-align:right;">
+      本課程會安排分組練習，I 人歡迎攜伴同行 ☺️
+    </p>
+  </div>
+</div>
+
+<!-- COURSE CONTENT -->
+<section>
+  <p class="section-label reveal">課程理念</p>
+  <h2 class="section-title reveal">不只是外型，<br>從底層力線開始重塑</h2>
+  <div class="content-body">
+    <p class="reveal">這堂課不會只停留在「表面臀腿型」的修飾，而是會從底層力線開始調整。</p>
+    <p class="reveal">我們會先從足踝、坐骨與下肢承重邏輯建立開始，重新整理整體排列與發力模式。</p>
+    <div class="highlight-block reveal">
+      <p>現在市面上很多臀腿矯正課程，大多是針對「現象」處理——臀凹陷就一直做外展訓練，但外展做越多，雖然臀部變大，卻可能讓股骨越外旋、骨盆上口越開，甚至讓整體力線更失衡。</p>
+    </div>
+    <p class="reveal">這次課程會帶大家理解真正的「底層邏輯」，從根本進入臀腿與下肢力線調整。</p>
+  </div>
+</section>
+
+<!-- GIFTS -->
+<div class="gifts-section">
+  <div class="gifts-inner">
+    <p class="section-label reveal">課程附贈</p>
+    <h2 class="section-title reveal">隨課附贈器材組</h2>
+    <ul class="gifts-list">
+      <li class="reveal reveal-delay-1">
+        <span class="gift-num">01</span><span>筋膜磚</span>
+      </li>
+      <li class="reveal reveal-delay-2">
+        <span class="gift-num">02</span><span>瑜珈彈力帶</span>
+      </li>
+      <li class="reveal reveal-delay-3">
+        <span class="gift-num">03</span><span>足控板</span>
+      </li>
+      <li class="reveal reveal-delay-4">
+        <span class="gift-num">04</span><span>筋膜球</span>
+      </li>
+    </ul>
+    <p class="gifts-note">總價值約 NT$1,600</p>
+  </div>
+</div>
+
+<!-- AFTER CLASS -->
+<section>
+  <p class="section-label reveal">課後資料</p>
+  <h2 class="section-title reveal">課程簡報，帶回家複習</h2>
+  <div class="after-card reveal">
+    <p>課後填寫回饋表單，即會贈送完整課程簡報。</p>
+    <p style="margin-top:14px;">現場以實作為主、理論為輔，課後提供完整簡報，方便回家複習與整理觀念✨</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <p class="section-label reveal" style="justify-content:center;">立即報名</p>
+  <div class="price-display reveal">12,600</div>
+  <p class="price-sub reveal">NT$ · 五堂完整課程</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSctLYlQP4xa8QV1fxU7T-bdHG0QubnlK9RtxttLmrcjyPe2dA/viewform?usp=publish-editor" target="_blank" class="cta-btn reveal">我要報名</a>
+  <p class="cta-note reveal">報名後將以訊息確認上課地點與細節</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Here and Now Studio &ensp;·&ensp; 女性下肢力線調整課 &ensp;·&ensp; 2025 Summer
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
